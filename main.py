@@ -55,3 +55,12 @@ print(new_data[['Name', 'Type 1', 'Type 2']])
 # filtering by name, we dont want to see any mega pokemon evolutions,
 # (~ serves as ! in panda)
 print(data.loc[~data['Name'].str.contains('Mega')])
+
+# conditional changes
+data.loc[data['Total'] > 500, ['Generation', 'Legendary']] = ['Test 1', 'Test 2']
+print(data)
+
+# groupby testing
+grouped = data.groupby(['Type 1']).mean().sort_values('Attack', ascending=False)
+print(grouped[['Attack']])
+# /\ basically works like SQL very cool
