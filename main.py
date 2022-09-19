@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 
 # testing loading csv files
@@ -64,3 +65,33 @@ print(data)
 grouped = data.groupby(['Type 1']).mean().sort_values('Attack', ascending=False)
 print(grouped[['Attack']])
 # /\ basically works like SQL very cool
+
+# dataframes using python base
+people = {
+    "first": ["John", "Jim", "Jack"],
+    "last": ["Smith", "McDonald", "Ajimbo"],
+}
+print(people['first'])
+
+# using Dataframe function to convert a dictionary into a table
+df = pd.DataFrame(people)
+print(df)
+
+# testing the apply function
+df = pd.DataFrame([[4, 9]] * 3, columns=['A', 'B'])
+print(df)
+print(df.apply(np.sqrt))
+
+# testing dropna
+df = pd.DataFrame({"name": ['Alfred', 'Batman', 'Catwoman'],
+                   "toy": [np.nan, 'Batmobile', 'Bullwhip'],
+                   "born": [pd.NaT, pd.Timestamp("1940-04-25"),
+                            pd.NaT]})
+print(df)
+print(df.dropna())
+
+# checking the info method
+df.info()
+
+# testing describe method
+print(data.describe())
